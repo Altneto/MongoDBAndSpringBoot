@@ -47,4 +47,10 @@ public class UserResource {
 		userService.delete(id);
 		return ResponseEntity.noContent().build();		
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody User newObj) {
+		userService.update(newObj);
+		return ResponseEntity.noContent().build();
+	}
 }
