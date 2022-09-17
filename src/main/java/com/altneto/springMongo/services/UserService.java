@@ -33,4 +33,8 @@ public class UserService {
 		
 		return new UserDto(user.get());	
 	}
+	
+	public User save(User obj) {
+		return userRepository.save(obj);
+	}
 }
