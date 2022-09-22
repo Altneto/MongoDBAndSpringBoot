@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.altneto.springMongo.domain.Post;
 import com.altneto.springMongo.domain.User;
 import com.altneto.springMongo.dto.UserDto;
 import com.altneto.springMongo.repositories.UserRepository;
@@ -32,6 +33,16 @@ public class UserService {
 		}
 		
 		return new UserDto(user.get());	
+	}
+	
+	public List<Post> findPosts(String id) {
+		Optional<User> user = userRepository.findById(id);
+		
+		if (!user.isPresent()) {
+			throw new ObjectNotFoundException("Usuário não encontrado");
+		}
+		
+		return user.get().getPosts();
 	}
 	
 	public User save(User obj) {
