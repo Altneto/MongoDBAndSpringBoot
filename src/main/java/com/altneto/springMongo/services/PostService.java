@@ -1,5 +1,6 @@
 package com.altneto.springMongo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,11 @@ public class PostService {
 		}
 		
 		return post.get();
+	}
+	
+	public List<Post> findByTilte(String text) {
+		List<Post> posts = postRepository.findByTitleContaining(text);
+		
+		return posts;
 	}
 }
